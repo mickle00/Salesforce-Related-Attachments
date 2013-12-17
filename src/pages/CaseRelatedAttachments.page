@@ -1,0 +1,17 @@
+<apex:page standardController="Case" extensions="CaseRelatedAttachmentsController">
+  <apex:outputPanel rendered="{!render}" style="padding-top: 10px">
+  <apex:pageBlock mode="maindetail" title="Related Record Attachments">
+    <apex:pageBlockTable value="{!relatedAttachments}" var="relatedAttach" title="Related Attachments">
+      <apex:column >
+        <apex:outputLink value="/{!relatedAttach.ParentId}" target="_top"> {!relatedAttach.Parent.Name} </apex:outputLink>
+        <apex:facet name="header">Related Record</apex:facet>
+      </apex:column>
+      <apex:column >
+        <apex:facet name="header">Attachment</apex:facet>
+        <apex:outputLink value="/servlet/servlet.FileDownload?file={!relatedAttach.Id}" target="_top"> {!relatedAttach.Name} </apex:outputLink>
+      </apex:column>
+      <apex:column value="{!relatedAttach.CreatedDate}"/>
+    </apex:pageBlockTable>
+  </apex:pageBlock>
+  </apex:outputPanel>
+</apex:page>
